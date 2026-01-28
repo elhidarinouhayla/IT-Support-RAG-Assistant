@@ -1,0 +1,36 @@
+fastapi
+uvicorn
+python-jose[cryptography]
+passlib[bcrypt]
+python-dotenv
+pydantic
+sqlalchemy
+psycopg2-binary
+scikit-learn
+numpy
+pandas
+pytest
+
+# PDF ingestion & text processing
+pypdf
+langchain
+langchain-community
+langchain-text-splitters
+
+# Embeddings & Vector DB
+sentence-transformers
+chromadb
+
+# LLM
+langchain-google-genai
+transformers
+torch
+
+# MLOps
+mlflow
+
+# Monitoring & Utils
+loguru
+tqdm
+
+
