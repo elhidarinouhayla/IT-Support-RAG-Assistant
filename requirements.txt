@@ -1,36 +1,41 @@
-fastapi
-uvicorn
-python-jose[cryptography]
-passlib[bcrypt]
-python-dotenv
-pydantic
-sqlalchemy
-psycopg2-binary
-scikit-learn
-numpy
-pandas
-pytest
+# Core
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+pydantic==2.5.3
+pydantic-settings==2.1.0
+python-multipart==0.0.6
 
-# PDF ingestion & text processing
-pypdf
-langchain
-langchain-community
-langchain-text-splitters
+# Database
+sqlalchemy==2.0.25
+psycopg2-binary==2.9.9
+alembic==1.13.1
 
-# Embeddings & Vector DB
-sentence-transformers
-chromadb
+# Authentication
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.1.2
 
-# LLM
-langchain-google-genai
-transformers
-torch
+# LangChain & RAG
+langchain==0.1.4
+langchain-community==0.0.16
+chromadb==0.4.22
+pypdf==3.17.4
 
-# MLOps
-mlflow
+# Embeddings & LLM
+sentence-transformers==2.3.1
+transformers==4.37.0
+torch==2.1.2
+google-generativeai==0.3.2
 
-# Monitoring & Utils
-loguru
-tqdm
+# ML & Clustering
+scikit-learn==1.4.0
+numpy==1.26.3
+pandas==2.2.0
 
+# MLflow
+mlflow==2.9.2
 
+# Utils
+python-dotenv==1.0.0
+pyyaml==6.0.1
+requests==2.31.0
