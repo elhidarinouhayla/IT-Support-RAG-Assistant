@@ -6,7 +6,7 @@ import os
 from langchain.chains import RetrievalQA
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.vectorstores import Chroma
-from .config import GEMINI_API_KEY
+from ..config import GEMINI_API_KEY
 
 
 pdf_path = "C:/Users/hp/Desktop/IT-Support-RAG-Assistant/data/raw/data.pdf"
