@@ -13,7 +13,7 @@ class Querie(Base):
     answer = Column(String, nullable=False)
     cluster = Column(Integer, nullable=False)
     latency_ms = Column(Float, nullable=False)
-    create_at = Column(DateTime, default=datetime.now)
+    created_at = Column(DateTime, default=datetime.now)
 
 
  
