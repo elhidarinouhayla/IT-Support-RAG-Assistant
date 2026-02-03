@@ -7,8 +7,12 @@ class QueryCreate(BaseModel):
     answer: str
     cluster: int
     latency_ms: float
-    
 
 
-class QueryResponse(QueryCreate):
-    id : int
+
+class QueryInput(BaseModel):
+    question: str
+
+class QueryResponse(BaseModel):
+    cluster: int
+    answer: str
