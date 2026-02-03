@@ -1,16 +1,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from config import DB_USER, PASSWORD, PORT, HOST, DATABASE
+from config import USER, PASSWORD, PORT, HOST, DATABASE
 
 
-DATABASE_URL = f"postgresql+psycopg2://{DB_USER}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
+DATABASE_URL = f"postgresql+psycopg2://{USER}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
 
-engine = create_engine(
-    DATABASE_URL,
-    pool_pre_ping=True,
-    echo=False
-)
+engine = create_engine(DATABASE_URL)
 
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
 Base = declarative_base()
