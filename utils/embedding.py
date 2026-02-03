@@ -1,6 +1,6 @@
 from langchain.embeddings import HuggingFaceEmbeddings
-from pdf_loading import load_pdf
-from text_splitter import split_pages
+from .pdf_loading import load_pdf
+from .text_splitter import split_pages
 from langchain_community.vectorstores import Chroma
 import os
 from langchain.chains import RetrievalQA
@@ -37,6 +37,7 @@ def save_vectordb():
 
     return vector_db
 
+vector_db = save_vectordb()
 
 # template du prompt
 prompt = """Tu es un assistant IT support expert. 
@@ -63,14 +64,16 @@ def configuration(vector_db):
         google_api_key=GEMINI_API_KEY
         )
     
-    retr = RetrievalQA.from_chain_type(
+    rag_chain = RetrievalQA.from_chain_type(
         llm=llm,
         chain_type="stuff",
         retriever=vector_db.as_retriever(search_kwargs={"k": 3}),
         chain_type_kwargs={"prompt": PROMPT},
         return_source_documents=True
     )
-    return retr
+    return rag_chain
+
+rag_chain = configuration(vector_db)
 
 # db = save_vectordb()
 # reponse = configuration(db)
