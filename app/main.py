@@ -2,10 +2,13 @@ from fastapi import FastAPI, HTTPException,Depends
 from .database import Base, engine, get_db
 from sqlalchemy.orm import Session
 from sqlalchemy import text
-from app.models.schema import UserCreate, UserResponse, UserVerify, output_predict, User_request
-from app.models.model import User
+from app.schemas.users_schema import UserCreate, UserResponse, UserVerify
+from app.schemas.queries_schema import QueryCreate, QueryResponse, QueryInput
+from app.models.users_model import User
+from app.models.queries_model import Querie
 from .auth import create_token, verify_password, verify_token, hache_password
-from .services.service_prediction import predict
+from utils.embedding import configuration, rag_chain
+from .services.kmeans_service import cluster
 
 
 
@@ -50,3 +53,14 @@ def login(user:UserVerify, db: Session=Depends(get_db)):
     token = create_token(db_user.username)
 
     return {"token" : token}
+
+
+
+@app.post("/query", response_model=QueryResponse)
+def query(querie: QueryInput, db: Session=Depends(verify_token)):
+
+    cluster_label = cluster(querie.question)
+
+    result = rag_chain.invoke({"query": querie.question})
+    return QueryResponse(cluster=cluster_label, answer=result["result"])
+    
