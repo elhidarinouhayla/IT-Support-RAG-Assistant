@@ -1,16 +1,16 @@
 from langchain.embeddings import HuggingFaceEmbeddings
-from .pdf_loading import load_pdf
-from .text_splitter import split_pages
+from utils.pdf_loading import load_pdf
+from utils.text_splitter import split_pages
 from langchain_community.vectorstores import Chroma
 import os
 from langchain.chains import RetrievalQA
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.vectorstores import Chroma
 from langchain.prompts import PromptTemplate
-from config import GEMINI_API_KEY
+from  config import GEMINI_API_KEY
 
 
-pdf_path = "/data/raw/data.pdf"
+pdf_path = "./data/raw/data.pdf"
 
 pages = load_pdf(pdf_path)
 chunks = split_pages(pages)
@@ -75,11 +75,11 @@ def configuration(vector_db):
 
 rag_chain = configuration(vector_db)
 
-# db = save_vectordb()
-# reponse = configuration(db)
+db = save_vectordb()
+reponse = configuration(db)
 
-# question = "Quelles sont les informations importantes mentionnees dans le document ?"
-# answer = reponse.invoke({"query": question})
+question = "Quelles sont les informations importantes mentionnees dans le document ?"
+answer = reponse.invoke({"query": question})
 
-# print("chatbot response :")
-# print(answer["result"])
+print("chatbot response :")
+print(answer["result"])
