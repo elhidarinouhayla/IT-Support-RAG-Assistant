@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  # Service PostgreSQL
+  db:
+    image: postgres:15
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: USER
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: DATABASE
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Service FastAPI
+  app:
+    build: .
+    ports:
+      - "8001:8000"
+    restart: always
+    depends_on:
+      - db
+    environment:
+      HOST: db
+      PORT: 5432
+      DATABASE: DATABASE
+      USER: USER
+      PASSWORD: 123
+    volumes:
+      - .:/app
+    command: sh -c "sleep 10 && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+
+volumes:
+  postgres_data:
