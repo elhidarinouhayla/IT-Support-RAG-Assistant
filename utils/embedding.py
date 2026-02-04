@@ -10,7 +10,7 @@ from langchain.prompts import PromptTemplate
 from config import GEMINI_API_KEY
 
 
-pdf_path = "C:/Users/hp/Desktop/IT-Support-RAG-Assistant/data/raw/data.pdf"
+pdf_path = "/data/raw/data.pdf"
 
 pages = load_pdf(pdf_path)
 chunks = split_pages(pages)
