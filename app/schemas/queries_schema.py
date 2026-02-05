@@ -1,18 +1,16 @@
 from pydantic import BaseModel
 
 
-class QueryCreate(BaseModel):
+class QueryRequest(BaseModel):
+    question: str
+
+
+class QueryResponse(BaseModel):
     user_id: int
     question: str
-    answer: str
     cluster: int
+    answer: str
     latency_ms: float
 
 
 
-class QueryInput(BaseModel):
-    question: str
-
-class QueryResponse(BaseModel):
-    cluster: int
-    answer: str

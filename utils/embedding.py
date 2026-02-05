@@ -75,11 +75,11 @@ def configuration(vector_db):
 
 rag_chain = configuration(vector_db)
 
-db = save_vectordb()
-reponse = configuration(db)
+# db = save_vectordb()
+# reponse = configuration(db)
 
-question = "Quelles sont les informations importantes mentionnees dans le document ?"
-answer = reponse.invoke({"query": question})
+# question = "Quelles sont les informations importantes mentionnees dans le document ?"
+# answer = reponse.invoke({"query": question})
 
-print("chatbot response :")
-print(answer["result"])
+# print("chatbot response :")
+# print(answer["result"])
