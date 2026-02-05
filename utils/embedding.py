@@ -1,4 +1,4 @@
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from utils.pdf_loading import load_pdf
 from utils.text_splitter import split_pages
 from langchain_community.vectorstores import Chroma
