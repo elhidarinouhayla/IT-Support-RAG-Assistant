@@ -33,6 +33,7 @@ services:
       - ./app:/app/app          
       - ./data:/app/data       
       - ./utils:/app/utils
+      - ./cluster:/app/cluster
     command: sh -c "sleep 10 && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
 
 volumes:

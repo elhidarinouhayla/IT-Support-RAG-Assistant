@@ -6,8 +6,8 @@ load_dotenv()
 
 USER = os.getenv("POSTGRES_USER")
 PASSWORD = os.getenv("POSTGRES_PASSWORD")
-HOST = os.getenv("POSTGRES_HOST")
-PORT = os.getenv("POSTGRES_PORT")
+HOST = os.getenv("POSTGRES_HOST", "db")
+PORT = os.getenv("POSTGRES_PORT", "5432")
 DATABASE = os.getenv("POSTGRES_DB")
 
 GEMINI_API_KEY=os.getenv("GEMINI_API_KEY")
