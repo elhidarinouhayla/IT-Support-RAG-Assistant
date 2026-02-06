@@ -1,13 +1,18 @@
 from langchain_community.embeddings import HuggingFaceEmbeddings
-from utils.pdf_loading import load_pdf
-from utils.text_splitter import split_pages
+from .pdf_loading import load_pdf
+from .text_splitter import split_pages
 from langchain_community.vectorstores import Chroma
 import os
 from langchain.chains import RetrievalQA
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.vectorstores import Chroma
 from langchain.prompts import PromptTemplate
-from  config import GEMINI_API_KEY
+# from config import GEMINI_API_KEY
+
+from dotenv import load_dotenv
+import os
+load_dotenv()
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 
 pdf_path = "./data/raw/data.pdf"
@@ -83,3 +88,36 @@ rag_chain = configuration(vector_db)
 
 # print("chatbot response :")
 # print(answer["result"])
+
+
+
+
+import mlflow
+import time
+
+mlflow.set_tracking_uri("./mlruns")
+mlflow.set_experiment("RAG_IT_SUPPORT")
+
+question = "Quelles sont les informations importantes mentionnees dans le document ?"
+
+with mlflow.start_run(run_name="RAG_Gemini_Run"):
+
+    start_time = time.time()
+
+    mlflow.log_param("embedding_model", "sentence-transformers/all-MiniLM-L6-v2")
+    mlflow.log_param("llm_model", "gemini-flash-latest")
+    mlflow.log_param("vector_db_path", "../data/vectordb/chroma_db")
+
+    vector_db = save_vectordb()
+    rag_chain = configuration(vector_db)
+
+    answer = rag_chain.invoke({"query": question})
+
+    latency = (time.time() - start_time) * 1000
+    mlflow.log_metric("latency_ms", latency)
+
+    mlflow.log_text(answer["result"], "test_answer.txt")
+
+    print("Réponse MLflow :")
+    print(answer["result"])
+
