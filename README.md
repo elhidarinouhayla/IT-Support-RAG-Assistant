@@ -5,22 +5,22 @@
 
 
 
-## 🎯 Vue d'ensemble
+##  Vue d'ensemble
 
 L'**Assistant RAG IT Support** est une solution d'intelligence artificielle conçue pour améliorer l'efficacité des équipes support IT. Il permet de :
 
-- ✅ Répondre rapidement aux questions récurrentes
-- ✅ Guider les techniciens lors d'incidents
-- ✅ Standardiser les procédures IT
-- ✅ Réduire le temps de résolution des tickets
-- ✅ Capitaliser sur la connaissance interne
+-  Répondre rapidement aux questions récurrentes
+-  Guider les techniciens lors d'incidents
+-  Standardiser les procédures IT
+-  Réduire le temps de résolution des tickets
+-  Capitaliser sur la connaissance interne
 
 Le système exploite un PDF de procédures IT comme source de connaissance et utilise le RAG pour générer des réponses contextuelles précises.
 
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -64,7 +64,7 @@ Response ← LLM Generation ← Prompt + Context ← Top-K Chunks
 
 ---
 
-## ✨ Fonctionnalités
+##  Fonctionnalités
 
 ###  Authentification & Sécurité
 - Système JWT pour l'authentification
@@ -98,7 +98,7 @@ Response ← LLM Generation ← Prompt + Context ← Top-K Chunks
 
 ---
 
-## 🛠️ Technologies
+##  Technologies
 
 ### Backend & API
 - **FastAPI** : Framework web moderne et performant
@@ -131,7 +131,7 @@ Response ← LLM Generation ← Prompt + Context ← Top-K Chunks
 
 
 
-## 🚀 Installation
+##  Installation
 
 ### 1. Clone du repository
 
@@ -161,7 +161,7 @@ pip install -r requirements.txt
 ```
 
 
-## ⚙️ Configuration
+##  Configuration
 
 ### Configuration du PDF
 
@@ -174,7 +174,7 @@ cp votre-manuel-it.pdf data/pdf/support_it.pdf
 
 ---
 
-## 💻 Utilisation
+##  Utilisation
 
 ### Lancement local avec Docker Compose
 
@@ -213,7 +213,7 @@ uvicorn app.main:app --reload
 
 
 
-## 📈 MLOps & Monitoring
+##  MLOps & Monitoring
 
 ### MLflow Tracking
 
@@ -227,8 +227,6 @@ Chaque requête est trackée automatiquement avec :
 
 - **Métriques** :
   - Latence de la requête (ms)
-  - Score de similarité moyen
-  - Longueur de la réponse
 
 - **Artifacts** :
   - Question posée
@@ -236,20 +234,6 @@ Chaque requête est trackée automatiquement avec :
   - Chunks contextuels utilisés
   - Prompt complet
 
-**Accéder à MLflow UI :**
-```
-http://localhost:5000
-```
-
-
-
-
-**Résultats :**
-- Groupement des questions similaires
-- Identification des topics IT fréquents
-- Stockage des labels dans PostgreSQL (colonne `cluster`)
-
----
 
 ## 🔄 CI/CD
 
@@ -274,23 +258,11 @@ jobs:
     - Push vers registry
 ```
 
-#### 3. **Deploy** (optionnel)
-```yaml
-  deploy:
-    - Deploy vers Kubernetes
-    - Rolling update
-    - Health check
-```
-
-### Déclencheurs
-
-- ✅ Push sur `develop`
-- ✅ Pull Request
-- ✅ Tag de version (`v*`)
 
 
 
-## ☸️ Déploiement
+
+##  Déploiement
 
 ### Kubernetes avec Lens Desktop
 
@@ -321,40 +293,6 @@ kubectl create secret generic rag-secrets \
   --from-literal=secret-key=$SECRET_KEY \
   -n rag-it-assistant
 ```
-
-#### 3. Déploiement de l'application
-
-```bash
-# Appliquer les manifests
-kubectl apply -f k8s/deployment.yaml
-kubectl apply -f k8s/service.yaml
-
-# Vérifier le déploiement
-kubectl get pods -n rag-it-assistant
-kubectl get services -n rag-it-assistant
-```
-
-#### 4. Accès à l'application
-
-```bash
-# Port-forward pour accès local
-kubectl port-forward -n rag-it-assistant \
-  service/rag-api 8000:8000
-
-# Ou via NodePort/LoadBalancer
-minikube service rag-api -n rag-it-assistant
-```
-
-#### 5. Visualisation avec Lens Desktop
-
-1. Ouvrir Lens Desktop
-2. Ajouter le cluster Minikube
-3. Naviguer vers le namespace `rag-it-assistant`
-4. Visualiser :
-   - **Workloads** → Pods (état, logs, shell)
-   - **Network** → Services, Ingress
-   - **Config** → ConfigMaps, Secrets
-   - **Storage** → PersistentVolumes
 
 
 ---
