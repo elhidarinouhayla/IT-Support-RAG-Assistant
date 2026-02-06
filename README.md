@@ -20,6 +20,64 @@ Le système exploite un PDF de procédures IT comme source de connaissance et ut
 
 ---
 
+
+##  Structure du projet
+
+```
+IT-Support-RAG-Assistant/
+├── app/
+│   ├── models/
+│   │   ├── queries_model.py
+│   │   └── users_model.py
+│   ├── schemas/
+│   │   ├── queries_schema.py
+│   │   └── users_schema.py
+│   ├── services/
+│   │   ├── kmeans_service.py
+│   │   ├── auth.py
+│   │   ├── database.py
+│   │   └── main.py
+│   ├── cluster/
+│   └── data/
+├── mlflow/
+│   └── mlflow.py
+├── tests/
+│   ├── integration/
+│   │   ├── test_api_endpoints.py
+│   │   └── test_full_pipeline.py
+│   ├── test_loading.py
+│   ├── test_query.py
+│   ├── test_rag_pipeline.py
+│   └── conftest.py
+├── utils/
+│   ├── embedding.py
+│   ├── pdf_loading.py
+│   └── text_splitter.py
+├── k8s/
+│   ├── namespace.yaml
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   ├── configmap.yaml
+│   └── secrets.yaml
+├── .github/
+│   └── workflows/
+│       └── ci-cd.yml
+├── docs/
+│   ├── architecture.md
+│   ├── api.md
+│   └── deployment.md
+├── Dockerfile
+├── Dockerfile.dev
+├── docker-compose.yml
+├── requirements.txt
+├── .env
+├── .gitignore
+└── README.md
+```
+---
+
+
+
 ##  Architecture
 
 ```
@@ -235,7 +293,7 @@ Chaque requête est trackée automatiquement avec :
   - Prompt complet
 
 
-## 🔄 CI/CD
+##  CI/CD
 
 ### GitHub Actions Pipeline
 
@@ -297,7 +355,7 @@ kubectl create secret generic rag-secrets \
 
 ---
 
-## 🧪 Tests
+##  Tests
 
 ### Tests unitaires
 
@@ -309,60 +367,6 @@ pytest
 
 
 
-## 📁 Structure du projet
-
-```
-IT-Support-RAG-Assistant/
-├── app/
-│   ├── models/
-│   │   ├── queries_model.py
-│   │   └── users_model.py
-│   ├── schemas/
-│   │   ├── queries_schema.py
-│   │   └── users_schema.py
-│   ├── services/
-│   │   ├── kmeans_service.py
-│   │   ├── auth.py
-│   │   ├── database.py
-│   │   └── main.py
-│   ├── cluster/
-│   └── data/
-├── mlflow/
-│   └── mlflow.py
-├── tests/
-│   ├── integration/
-│   │   ├── test_api_endpoints.py
-│   │   └── test_full_pipeline.py
-│   ├── test_loading.py
-│   ├── test_query.py
-│   ├── test_rag_pipeline.py
-│   └── conftest.py
-├── utils/
-│   ├── embedding.py
-│   ├── pdf_loading.py
-│   └── text_splitter.py
-├── k8s/
-│   ├── namespace.yaml
-│   ├── deployment.yaml
-│   ├── service.yaml
-│   ├── configmap.yaml
-│   └── secrets.yaml
-├── .github/
-│   └── workflows/
-│       └── ci-cd.yml
-├── docs/
-│   ├── architecture.md
-│   ├── api.md
-│   └── deployment.md
-├── Dockerfile
-├── Dockerfile.dev
-├── docker-compose.yml
-├── requirements.txt
-├── .env
-├── .gitignore
-└── README.md
-```
----
 
 
 
