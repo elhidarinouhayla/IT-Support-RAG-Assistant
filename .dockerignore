@@ -1,0 +1,10 @@
+venv
+logs
+__pycache__
+.env
+.gitignore
+.env
+.env.*
+*.log
+data/
+models/
