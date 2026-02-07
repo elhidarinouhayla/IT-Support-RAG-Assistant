@@ -3,7 +3,7 @@ import os
 from langchain.embeddings import HuggingFaceBgeEmbeddings
 
 
-kmeans_model = joblib.load("C:/Users/hp/Desktop/IT-Support-RAG-Assistant/cluster/models/kmeans_model.pkl")
+kmeans_model = joblib.load("./cluster/models/kmeans_model.pkl")
 
 print('model kmeans charge')
 
