@@ -5,6 +5,7 @@ class QueryRequest(BaseModel):
     question: str
 
 
+
 class QueryResponse(BaseModel):
     user_id: int
     question: str
